@@ -6,19 +6,21 @@ import os
 
 #define fundamentals
 addusr=['add user','update user','add new user']
-freqRate=1
+freqRate=1# rate at which images needs to be clicked
 #for creating log
-status = False
+status = True
+def log(data,status):
+    if status==True:
+        print(data)
 def Speak(command):
+    #log("speak init",status)
     engine = pyttsx3.init()
     engine.say(command)
     engine.runAndWait()
 Speak("This project has been initiated!")
-def log(data,status):
-    if status==True:
-        print(data)
+
 def validator(myCommand,instruction):#command from user, instruction to follow its a set
-    log(f"valication init:{instruction},{myCommand}",status)
+    #log(f"valication init:{instruction},{myCommand}",status)
     flag =0
     for i in instruction:
         if(myCommand.find(i)!=-1):
@@ -29,9 +31,12 @@ def validator(myCommand,instruction):#command from user, instruction to follow i
     else:
         Speak("validation failed")
         return False
+#this is not a smart name identification its based on logic that name comes last in the command else this is expected to fail
 def name(myCommand):
     #identifies name from user command and returns name
-    pass
+    name= str(myCommand.split(" ")[-1])
+    log(f"identified user name: {name}",status)
+    return name
 
 def clickimg(name):
     foldername=name+"_folder"
@@ -47,7 +52,6 @@ def clickimg(name):
             time.sleep(freqRate)
             return_value, image = camera.read()
             cv2.imwrite(ELOC+str(i)+'.png', image)
-            log(f"dataset creating:{name}",status)
         camera.release()
         cv2.destroyAllWindows()
     except:
@@ -67,8 +71,8 @@ while(1):
         if (validator(MyCommand,addusr)):
             Speak('initiated add user')#implement name detection in the sentence : add user kaushik detect kaushik
             try:
-                clickimg('kaushik')
-                #break
+                clickimg(name(MyCommand))
+                #break and init face training and recognision 
             except:
                 Speak("error creating database")
             break
