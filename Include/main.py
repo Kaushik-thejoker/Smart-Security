@@ -3,13 +3,19 @@ import pyttsx3
 import speech_recognition as sr
 import time
 import os
+import datetime
 
 #define fundamentals
 addusr=['add user','update user','add new user']
+listusers=["list all users","all users","users"]
 freqRate=1# rate at which images needs to be clicked
 #for creating log
-status = True
+status = False
 def log(data,status):
+    x = datetime.datetime.now()
+    runlog= open('../logs/runtime.txt',"a")
+    runlog.write(data+"-----"+str(x)+"\n")
+    runlog.close()
     if status==True:
         print(data)
 def Speak(command):
@@ -20,17 +26,12 @@ def Speak(command):
 Speak("This project has been initiated!")
 
 def validator(myCommand,instruction):#command from user, instruction to follow its a set
-    #log(f"valication init:{instruction},{myCommand}",status)
-    flag =0
+    log(f"valication init:{instruction},{myCommand}",status)
     for i in instruction:
         if(myCommand.find(i)!=-1):
-            log("validated",status)
-            flag =1
-    if flag ==1:
-        return True
-    else:
-        Speak("validation failed")
-        return False
+            return True
+    log("Validation failed",status)
+    return False
 #this is not a smart name identification its based on logic that name comes last in the command else this is expected to fail
 def name(myCommand):
     #identifies name from user command and returns name
@@ -76,6 +77,9 @@ while(1):
             except:
                 Speak("error creating database")
             break
+        elif (validator(MyCommand,listusers)):
+            log("Listing all users",status)
+            #speak all the names of users from cloud or local database
         break
     except sr.RequestError as e:
         print("Could not request results; {0}".format(e))

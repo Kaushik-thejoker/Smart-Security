@@ -1,0 +1,36 @@
+Did you say:all users 
+validated
+validated
+Listing all users
+Did you say:users 
+validation failed
+validated
+Listing all users
+Did you say:add user kaushik 
+validated
+identified user name: kaushik
+database init of:kaushik
+Did you say:just all the users 
+validation failed
+validated
+Listing all users
+Did you say:fuck users 
+valication init:['add user', 'update user', 'add new user'],fuck users
+validation failed
+valication init:['list all users', 'all users', 'users'],fuck users
+validated
+Listing all users
+Did you say:add user nihal 
+valication init:['add user', 'update user', 'add new user'],add user nihal
+identified user name: nihal
+database init of:nihal
+Did you say:all users 
+valication init:['add user', 'update user', 'add new user'],all users
+Validation failed
+valication init:['list all users', 'all users', 'users'],all users
+Listing all users
+Did you say:list all users -----2023-04-09 15:30:20.232723
+valication init:['add user', 'update user', 'add new user'],list all users-----2023-04-09 15:30:20.247731
+Validation failed-----2023-04-09 15:30:20.248732
+valication init:['list all users', 'all users', 'users'],list all users-----2023-04-09 15:30:20.248732
+Listing all users-----2023-04-09 15:30:20.248732
