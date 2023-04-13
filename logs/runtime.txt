@@ -1,36 +1,86 @@
-Did you say:all users 
-validated
-validated
-Listing all users
-Did you say:users 
-validation failed
-validated
-Listing all users
-Did you say:add user kaushik 
-validated
-identified user name: kaushik
-database init of:kaushik
-Did you say:just all the users 
-validation failed
-validated
-Listing all users
-Did you say:fuck users 
-valication init:['add user', 'update user', 'add new user'],fuck users
-validation failed
-valication init:['list all users', 'all users', 'users'],fuck users
-validated
-Listing all users
-Did you say:add user nihal 
-valication init:['add user', 'update user', 'add new user'],add user nihal
-identified user name: nihal
-database init of:nihal
-Did you say:all users 
-valication init:['add user', 'update user', 'add new user'],all users
-Validation failed
-valication init:['list all users', 'all users', 'users'],all users
-Listing all users
-Did you say:list all users -----2023-04-09 15:30:20.232723
-valication init:['add user', 'update user', 'add new user'],list all users-----2023-04-09 15:30:20.247731
-Validation failed-----2023-04-09 15:30:20.248732
-valication init:['list all users', 'all users', 'users'],list all users-----2023-04-09 15:30:20.248732
-Listing all users-----2023-04-09 15:30:20.248732
+Did you say:add user kaushik -----2023-04-13 15:26:51.779216
+identified user name: kaushik-----2023-04-13 15:26:53.628627
+database init of:kaushik-----2023-04-13 15:26:53.652633
+Face detected-----2023-04-13 15:26:54.354215
+Face detected-----2023-04-13 15:26:55.428246
+Face detected-----2023-04-13 15:26:56.478052
+Face detected-----2023-04-13 15:26:57.533670
+Face detected-----2023-04-13 15:26:58.584476
+Face detected-----2023-04-13 15:26:59.645980
+identified user name: kaushik-----2023-04-13 15:27:00.664069
+Did you say:add user nihal -----2023-04-13 15:33:30.561246
+identified user name: nihal-----2023-04-13 15:33:32.424586
+database init of:nihal-----2023-04-13 15:33:32.468508
+Face detected-----2023-04-13 15:33:33.525298
+Face detected-----2023-04-13 15:33:35.619975
+Face detected-----2023-04-13 15:33:37.670695
+Face detected-----2023-04-13 15:33:39.735809
+Face detected-----2023-04-13 15:33:41.804619
+Face detected-----2023-04-13 15:33:43.875788
+Face detected-----2023-04-13 15:33:45.945747
+Face detected-----2023-04-13 15:33:48.013400
+Face detected-----2023-04-13 15:33:50.082661
+Face detected-----2023-04-13 15:33:52.147087
+Recording failed: nihal-----2023-04-13 15:33:52.658919
+Face detected-----2023-04-13 15:33:52.702928
+Recording failed: nihal-----2023-04-13 15:33:53.145662
+Face detected-----2023-04-13 15:33:53.189684
+Recording failed: nihal-----2023-04-13 15:33:54.738503
+Face detected-----2023-04-13 15:33:54.778518
+Recording failed: nihal-----2023-04-13 15:33:55.013916
+Face detected-----2023-04-13 15:33:55.057915
+Face detected-----2023-04-13 15:33:57.137121
+Recording failed: nihal-----2023-04-13 15:33:57.237168
+Face detected-----2023-04-13 15:33:57.281184
+Recording failed: nihal-----2023-04-13 15:33:57.453812
+Face detected-----2023-04-13 15:33:57.498986
+Face detected-----2023-04-13 15:33:59.565912
+Did you say:add user nihal -----2023-04-13 15:36:17.802128
+identified user name: nihal-----2023-04-13 15:36:19.655290
+database init of:nihal-----2023-04-13 15:36:19.655290
+identified user name: nihal-----2023-04-13 15:36:22.743259
+Did you say:add user kaushik -----2023-04-13 15:39:30.816611
+identified user name: kaushik-----2023-04-13 15:39:32.671160
+database init of:kaushik-----2023-04-13 15:39:32.671160
+adding name to DB-----2023-04-13 15:39:35.996369
+identified user name: kaushik-----2023-04-13 15:39:35.996369
+Did you say:user -----2023-04-13 15:40:30.317869
+Validation failed-----2023-04-13 15:40:30.330982
+Validation failed-----2023-04-13 15:40:30.334983
+Did you say:add user kshitij -----2023-04-13 15:40:44.874734
+identified user name: kshitij-----2023-04-13 15:40:46.718924
+database init of:kshitij-----2023-04-13 15:40:46.718924
+adding name to DB-----2023-04-13 15:40:49.944998
+identified user name: kshitij-----2023-04-13 15:40:49.944998
+noted name:kshitij-----2023-04-13 15:40:49.944998
+Did you say:user rohit -----2023-04-13 15:45:04.828282
+Validation failed-----2023-04-13 15:45:04.842127
+Validation failed-----2023-04-13 15:45:04.842127
+Did you say:add user rohit -----2023-04-13 15:45:33.228402
+identified user name: rohit-----2023-04-13 15:45:35.094232
+database init of:rohit-----2023-04-13 15:45:35.138245
+Face detected-----2023-04-13 15:45:36.122512
+Face detected-----2023-04-13 15:45:37.190534
+Face detected-----2023-04-13 15:45:38.240717
+Face detected-----2023-04-13 15:45:39.290993
+Face detected-----2023-04-13 15:45:40.335115
+Face detected-----2023-04-13 15:45:41.385159
+identified user name: rohit-----2023-04-13 15:45:42.411002
+noted name:rohit-----2023-04-13 15:45:42.412002
+Did you say:rahul -----2023-04-13 16:12:40.482295
+Validation failed-----2023-04-13 16:12:40.490059
+Validation failed-----2023-04-13 16:12:40.491059
+Did you say:user kaushik -----2023-04-13 16:12:52.021011
+Validation failed-----2023-04-13 16:12:52.029013
+Validation failed-----2023-04-13 16:12:52.029013
+Did you say:add user rahul -----2023-04-13 16:13:44.470147
+identified user name: rahul-----2023-04-13 16:13:46.253555
+database init of:rahul-----2023-04-13 16:13:46.278121
+Face detected-----2023-04-13 16:13:46.718803
+Face detected-----2023-04-13 16:13:47.781960
+Face detected-----2023-04-13 16:13:48.830828
+Face detected-----2023-04-13 16:13:49.870098
+Face detected-----2023-04-13 16:13:50.911315
+Face detected-----2023-04-13 16:13:51.948262
+identified user name: rahul-----2023-04-13 16:13:52.961488
+noted name:rahul-----2023-04-13 16:13:52.962488

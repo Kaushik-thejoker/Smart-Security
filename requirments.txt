@@ -3,3 +3,7 @@ opencv-python
 PyAudio
 speechrecognition
 DateTime
+opencv-contrib-python
+Pillow
+h5py
+imutils
