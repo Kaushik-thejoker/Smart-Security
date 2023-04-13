@@ -52,38 +52,27 @@ def name(myCommand):
     return name
 
 def clickimg(name):
-    num_imgs=0
-    new_img=None
-    detector = cv2.CascadeClassifier("../training/haarcascade_frontalface_default.xml")
     foldername=name
     folderpath="../training/"
     log(f'database init of:{name}',status)
-    path = r'../images/database.mp4'#has to be auto genrated dynamic replace me with 0
+    path = r'../images/test.mp4'#has to be auto genrated dynamic
     ELOC= f"../training/{foldername}/{name}"
     if not os.path.exists(folderpath+foldername):
          os.mkdir(folderpath+foldername)
     try:
-        while True:
-            camera = cv2.VideoCapture(path)
+        camera = cv2.VideoCapture(path)
+        for i in range(3):
+            time.sleep(freqRate)
             return_value, image = camera.read()
-            new_img = None
-            grayimg = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-            face = detector.detectMultiScale(image=grayimg, scaleFactor=1.2, minNeighbors=5)
-            for x,y,w,h in face:
-                print(x,y,w,h)
-                log("Face detected",status)
-                new_img = image[y:y+h, x:x+w]
-            key = cv2.waitKey(1) & 0xFF
-            try:
-                cv2.imwrite(ELOC+str(num_imgs)+'.png',new_img)
-                num_imgs+=1
-                time.sleep(1)
-            except:
-                log(f"Recording failed: {name}",status)
-            if key ==ord("q") or num_imgs>5:
-                break
+            cv2.imwrite(ELOC+str(i)+'.png', image)
+        camera.release()
+        cv2.destroyAllWindows()
+        return True
     except:
-        log(f"Error in creating DB of {name}",status)
+        log('create database failed',status)
+        return False
+    del(camera)
+
 while(1):
     try:
         with sr.Microphone() as source2:
@@ -97,8 +86,9 @@ while(1):
         if (validator(MyCommand,addusr)):
             Speak('initiated add user')#implement name detection in the sentence : add user kaushik detect kaushik
             try:
-                clickimg(name(MyCommand))
-                dataset(name(MyCommand))
+                if(clickimg(name(MyCommand))):
+                    log("adding name to DB",status)
+                    dataset(name(MyCommand))
                 #break and init face training and recognision 
             except:
                 Speak("error creating database")
