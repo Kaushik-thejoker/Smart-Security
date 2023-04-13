@@ -25,8 +25,20 @@ def Speak(command):
     engine.runAndWait()
 Speak("This project has been initiated!")
 
+def dataset(name):
+    dataset = open('../names.txt','a')
+    dataset.write(name+"\n")
+    log(f"noted name:{name}",status)
+
+def readDb():
+    with open('../names.txt') as f:
+        Speak("The users are:")
+        for line in f.readlines():
+            time.sleep(0.5)
+            Speak(line)
+
 def validator(myCommand,instruction):#command from user, instruction to follow its a set
-    log(f"valication init:{instruction},{myCommand}",status)
+    #log(f"valication init:{instruction},{myCommand}",status)
     for i in instruction:
         if(myCommand.find(i)!=-1):
             return True
@@ -40,25 +52,38 @@ def name(myCommand):
     return name
 
 def clickimg(name):
-    foldername=name+"_folder"
+    num_imgs=0
+    new_img=None
+    detector = cv2.CascadeClassifier("../training/haarcascade_frontalface_default.xml")
+    foldername=name
     folderpath="../training/"
     log(f'database init of:{name}',status)
-    path = r'../images/test.mp4'#has to be auto genrated dynamic
+    path = r'../images/database.mp4'#has to be auto genrated dynamic replace me with 0
     ELOC= f"../training/{foldername}/{name}"
     if not os.path.exists(folderpath+foldername):
          os.mkdir(folderpath+foldername)
     try:
-        camera = cv2.VideoCapture(path)
-        for i in range(3):
-            time.sleep(freqRate)
+        while True:
+            camera = cv2.VideoCapture(path)
             return_value, image = camera.read()
-            cv2.imwrite(ELOC+str(i)+'.png', image)
-        camera.release()
-        cv2.destroyAllWindows()
+            new_img = None
+            grayimg = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+            face = detector.detectMultiScale(image=grayimg, scaleFactor=1.2, minNeighbors=5)
+            for x,y,w,h in face:
+                print(x,y,w,h)
+                log("Face detected",status)
+                new_img = image[y:y+h, x:x+w]
+            key = cv2.waitKey(1) & 0xFF
+            try:
+                cv2.imwrite(ELOC+str(num_imgs)+'.png',new_img)
+                num_imgs+=1
+                time.sleep(1)
+            except:
+                log(f"Recording failed: {name}",status)
+            if key ==ord("q") or num_imgs>5:
+                break
     except:
-        log('create database failed',status)
-    del(camera)
-
+        log(f"Error in creating DB of {name}",status)
 while(1):
     try:
         with sr.Microphone() as source2:
@@ -73,12 +98,14 @@ while(1):
             Speak('initiated add user')#implement name detection in the sentence : add user kaushik detect kaushik
             try:
                 clickimg(name(MyCommand))
+                dataset(name(MyCommand))
                 #break and init face training and recognision 
             except:
                 Speak("error creating database")
             break
         elif (validator(MyCommand,listusers)):
             log("Listing all users",status)
+            readDb()#prints all the users added
             #speak all the names of users from cloud or local database
         break
     except sr.RequestError as e:
