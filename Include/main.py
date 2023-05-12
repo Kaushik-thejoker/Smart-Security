@@ -4,20 +4,17 @@ import speech_recognition as sr
 import time
 import os
 import datetime
-
+from create_classifier import train_classifer
+from create_dataset import create_db
+from loger import log
+from recogniser import recognizer
 #define fundamentals
 addusr=['add user','update user','add new user']
 listusers=["list all users","all users","users"]
 freqRate=1# rate at which images needs to be clicked
 #for creating log
-status = False
-def log(data,status):
-    x = datetime.datetime.now()
-    runlog= open('../logs/runtime.txt',"a")
-    runlog.write(data+"-----"+str(x)+"\n")
-    runlog.close()
-    if status==True:
-        print(data)
+status = True
+
 def Speak(command):
     #log("speak init",status)
     engine = pyttsx3.init()
@@ -26,9 +23,13 @@ def Speak(command):
 Speak("This project has been initiated!")
 
 def dataset(name):
-    dataset = open('../names.txt','a')
-    dataset.write(name+"\n")
-    log(f"noted name:{name}",status)
+    try:
+        dataset = open('../names.txt','a')
+        dataset.write(name+" ")
+        log(f"noted name:{name}",status)
+    except:
+        log("error noting name refer line27",status)
+
 
 def readDb():
     with open('../names.txt') as f:
@@ -55,23 +56,28 @@ def clickimg(name):
     foldername=name
     folderpath="../training/"
     log(f'database init of:{name}',status)
-    path = r'../images/test.mp4'#has to be auto genrated dynamic
-    ELOC= f"../training/{foldername}/{name}"
-    if not os.path.exists(folderpath+foldername):
-         os.mkdir(folderpath+foldername)
+    path = r'../images/woman.mp4'#has to be auto genrated dynamic
+    ELOC= f"../training/{foldername}/"
     try:
-        camera = cv2.VideoCapture(path)
-        for i in range(3):
-            time.sleep(freqRate)
-            return_value, image = camera.read()
-            cv2.imwrite(ELOC+str(i)+'.png', image)
-        camera.release()
-        cv2.destroyAllWindows()
+        create_db(name=name,pathvid=path)
         return True
     except:
-        log('create database failed',status)
         return False
-    del(camera)
+    # if not os.path.exists(folderpath+foldername):
+    #      os.mkdir(folderpath+foldername)
+    # try:
+    #     camera = cv2.VideoCapture(path)
+    #     for i in range(9):
+    #         time.sleep(freqRate)
+    #         return_value, image = camera.read()
+    #         cv2.imwrite(ELOC+str(i)+name+'.jpg', image)
+    #     camera.release()
+    #     cv2.destroyAllWindows()
+    #     return True
+    # except:
+    #     log('create database failed',status)
+    #     return False
+    # del(camera)
 
 while(1):
     try:
@@ -87,8 +93,14 @@ while(1):
             Speak('initiated add user')#implement name detection in the sentence : add user kaushik detect kaushik
             try:
                 if(clickimg(name(MyCommand))):
-                    log("adding name to DB",status)
+                    log("adding name to DB: ",status)
                     dataset(name(MyCommand))
+                    try:
+                        recognizer(vidpath='../images/woman.mp4',sourceNames='../names.txt',status=status)
+                        #train_classifer(name(MyCommand),status=status)
+                        log(f"recognising bugin done: {name(MyCommand)}",status)
+                    except:
+                        log("\nError recognizing:\n",status)
                 #break and init face training and recognision 
             except:
                 Speak("error creating database")
