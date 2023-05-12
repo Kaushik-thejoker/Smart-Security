@@ -7,3 +7,6 @@ opencv-contrib-python
 Pillow
 h5py
 imutils
+face_recognition
+dlib
+cmake

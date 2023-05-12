@@ -37,7 +37,7 @@ def recognizer(vidpath,sourceNames,status):
     current_date = now.strftime("%Y-%m-%d")
     log(current_date,status)
     
-    f = open("../logs/"+current_date+'.csv','w+',newline = '')
+    f = open("../logs/"+current_date+'.csv','a')
     lnwriter = csv.writer(f)
     
     while True:
@@ -55,29 +55,18 @@ def recognizer(vidpath,sourceNames,status):
                 best_match_index = np.argmin(face_distance)
                 if matches[best_match_index]:
                     name = known_faces_names[best_match_index]
-    
+                else:
+                    print("unknown face detected")
                 face_names.append(name)
                 if name in known_faces_names:
                     log(f"found :{name} ",status)
-                    # font = cv2.FONT_HERSHEY_SIMPLEX
-                    # bottomLeftCornerOfText = (10,100)
-                    # fontScale              = 1.5
-                    # fontColor              = (255,0,0)
-                    # thickness              = 3
-                    # lineType               = 2
-    
-                    # cv2.putText(frame,name+' Present', 
-                    #     bottomLeftCornerOfText, 
-                    #     font, 
-                    #     fontScale,
-                    #     fontColor,
-                    #     thickness,
-                    #     lineType)
                     if name in students:
                         students.remove(name)
                         #log(students,status)
                         current_time = now.strftime("%H:%M:%S")
                         lnwriter.writerow([name,current_time])
+                else:
+                    print("unkown face detected")
         cv2.imshow("attendence system",frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
@@ -85,4 +74,4 @@ def recognizer(vidpath,sourceNames,status):
     video_capture.release()
     cv2.destroyAllWindows()
     f.close()
-# recognizer(vidpath='../images/woman.mp4',sourceNames='../names.txt',status=True)
+recognizer(vidpath='../images/man.mp4',sourceNames='../names.txt',status=True)
