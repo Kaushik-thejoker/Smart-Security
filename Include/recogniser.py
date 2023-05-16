@@ -61,17 +61,17 @@ def recognizer(vidpath,sourceNames,status):
                 if name in known_faces_names:
                     log(f"found :{name} ",status)
                     if name in students:
-                        students.remove(name)
-                        #log(students,status)
+                        students.remove(name)# this name needs to be updated into cloud with a pic
+                        log(students,status)
                         current_time = now.strftime("%H:%M:%S")
+                        print('data needed: ',[name,current_time])
                         lnwriter.writerow([name,current_time])
                 else:
                     print("unkown face detected")
-        cv2.imshow("attendence system",frame)
+        cv2.imshow("attendence system",frame)# needs to be turned off while deploying
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
-    
     video_capture.release()
     cv2.destroyAllWindows()
     f.close()
-recognizer(vidpath='../images/man.mp4',sourceNames='../names.txt',status=True)
+# recognizer(vidpath='../images/woman.mp4',sourceNames='../names.txt',status=False)

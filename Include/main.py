@@ -4,16 +4,18 @@ import speech_recognition as sr
 import time
 import os
 import datetime
-from create_classifier import train_classifer
 from create_dataset import create_db
 from loger import log
 from recogniser import recognizer
 #define fundamentals
 addusr=['add user','update user','add new user']
 listusers=["list all users","all users","users"]
+initProcess=["init",'start']
 freqRate=1# rate at which images needs to be clicked
 #for creating log
 status = True
+path = r'../images/woman.mp4'#has to be auto genrated dynamic for video
+namepath='../names.txt'
 
 def Speak(command):
     #log("speak init",status)
@@ -24,7 +26,7 @@ Speak("This project has been initiated!")
 
 def dataset(name):
     try:
-        dataset = open('../names.txt','a')
+        dataset = open(namepath,'a')
         dataset.write(name+" ")
         log(f"noted name:{name}",status)
     except:
@@ -56,28 +58,12 @@ def clickimg(name):
     foldername=name
     folderpath="../training/"
     log(f'database init of:{name}',status)
-    path = r'../images/woman.mp4'#has to be auto genrated dynamic
     ELOC= f"../training/{foldername}/"
     try:
         create_db(name=name,pathvid=path)
         return True
     except:
         return False
-    # if not os.path.exists(folderpath+foldername):
-    #      os.mkdir(folderpath+foldername)
-    # try:
-    #     camera = cv2.VideoCapture(path)
-    #     for i in range(9):
-    #         time.sleep(freqRate)
-    #         return_value, image = camera.read()
-    #         cv2.imwrite(ELOC+str(i)+name+'.jpg', image)
-    #     camera.release()
-    #     cv2.destroyAllWindows()
-    #     return True
-    # except:
-    #     log('create database failed',status)
-    #     return False
-    # del(camera)
 
 while(1):
     try:
@@ -95,20 +81,18 @@ while(1):
                 if(clickimg(name(MyCommand))):
                     log("adding name to DB: ",status)
                     dataset(name(MyCommand))
-                    try:
-                        recognizer(vidpath='../images/woman.mp4',sourceNames='../names.txt',status=status)
-                        #train_classifer(name(MyCommand),status=status)
-                        log(f"recognising bugin done: {name(MyCommand)}",status)
-                    except:
-                        log("\nError recognizing:\n",status)
-                #break and init face training and recognision 
+                    Speak(f"dataset created for {name(MyCommand)}!!")
+                        #recognizer(vidpath='../images/woman.mp4',sourceNames='../names.txt',status=status)
+                        #train_classifer(name(MyCommand),status=status) 
             except:
                 Speak("error creating database")
-            break
         elif (validator(MyCommand,listusers)):
             log("Listing all users",status)
             readDb()#prints all the users added
             #speak all the names of users from cloud or local database
+        elif(validator(MyCommand,initProcess)):
+            log("begin recognition!",status)
+            recognizer(vidpath=path,sourceNames=namepath,status=status)
         break
     except sr.RequestError as e:
         print("Could not request results; {0}".format(e))
