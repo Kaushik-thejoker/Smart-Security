@@ -11,10 +11,10 @@ from recogniser import recognizer
 addusr=['add user','update user','add new user']
 listusers=["list all users","all users","users"]
 initProcess=["init",'start']
-freqRate=1# rate at which images needs to be clicked
+freqRate=0# rate at which images needs to be clicked
 #for creating log
 status = True
-path = r'../images/woman.mp4'#has to be auto genrated dynamic for video
+path = 1 #has to be auto genrated dynamic for video
 namepath='../names.txt'
 
 def Speak(command):

@@ -5,7 +5,7 @@ import csv
 import os
 from datetime import datetime
 from loger import log
-
+from recorder import capture_picture
 def recognizer(vidpath,sourceNames,status):
 
     #captures video 
@@ -56,18 +56,20 @@ def recognizer(vidpath,sourceNames,status):
                 if matches[best_match_index]:
                     name = known_faces_names[best_match_index]
                 else:
-                    print("unknown face detected")
+                    print("unknown face detected line 59")
+                    capture_picture("unknown")#call alert
                 face_names.append(name)
                 if name in known_faces_names:
                     log(f"found :{name} ",status)
                     if name in students:
+                        capture_picture(name)
                         students.remove(name)# this name needs to be updated into cloud with a pic
                         log(students,status)
                         current_time = now.strftime("%H:%M:%S")
                         print('data needed: ',[name,current_time])
                         lnwriter.writerow([name,current_time])
                 else:
-                    print("unkown face detected")
+                    print("unknown found line 72")
         cv2.imshow("attendence system",frame)# needs to be turned off while deploying
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break

@@ -21,12 +21,10 @@ def create_db(name,pathvid):
         faces = face_detector.detectMultiScale(gray, 1.3, 5)
         
         for (x,y,w,h) in faces:
-
             cv2.rectangle(img, (x,y), (x+w,y+h), (255,0,0), 2)     
             count += 1
-
             # Save the captured image into the datasets folder
-            cv2.imwrite(path +name + ".jpg", gray[y:y+h,x:x+w])
+            cv2.imwrite(path +name +".jpg", gray[y:y+h,x:x+w])
             print(f"progress...clicking {str(count)}")
             # cv2.imshow('image', img)
 
