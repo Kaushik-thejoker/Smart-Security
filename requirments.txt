@@ -10,3 +10,4 @@ imutils
 face_recognition
 dlib
 cmake
+firebase-admin
