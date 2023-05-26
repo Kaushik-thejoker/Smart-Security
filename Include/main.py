@@ -8,13 +8,13 @@ from create_dataset import create_db
 from loger import log
 from recogniser import recognizer
 #define fundamentals
-addusr=['add user','update user','add new user']
+addusr=['add user','update user','add new11 user']
 listusers=["list all users","all users","users"]
 initProcess=["init",'start']
 freqRate=0# rate at which images needs to be clicked
 #for creating log
 status = True
-path = 1 #has to be auto genrated dynamic for video
+path = 0#"../images/woman.mp4" #has to be auto genrated dynamic for video
 namepath='../names.txt'
 
 def Speak(command):

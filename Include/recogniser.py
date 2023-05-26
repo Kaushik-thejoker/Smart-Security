@@ -6,6 +6,7 @@ import os
 from datetime import datetime
 from loger import log
 from recorder import capture_picture
+
 def recognizer(vidpath,sourceNames,status):
 
     #captures video 
@@ -68,8 +69,6 @@ def recognizer(vidpath,sourceNames,status):
                         current_time = now.strftime("%H:%M:%S")
                         print('data needed: ',[name,current_time])
                         lnwriter.writerow([name,current_time])
-                else:
-                    print("unknown found line 72")
         cv2.imshow("attendence system",frame)# needs to be turned off while deploying
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
