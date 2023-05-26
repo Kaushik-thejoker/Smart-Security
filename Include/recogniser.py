@@ -58,12 +58,12 @@ def recognizer(vidpath,sourceNames,status):
                     name = known_faces_names[best_match_index]
                 else:
                     print("unknown face detected line 59")
-                    capture_picture("unknown")#call alert
+                    capture_picture("unknown",pathvid=vidpath)#call alert
                 face_names.append(name)
                 if name in known_faces_names:
                     log(f"found :{name} ",status)
                     if name in students:
-                        capture_picture(name)
+                        capture_picture(name,pathvid=vidpath)
                         students.remove(name)# this name needs to be updated into cloud with a pic
                         log(students,status)
                         current_time = now.strftime("%H:%M:%S")

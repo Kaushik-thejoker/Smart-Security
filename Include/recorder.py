@@ -3,7 +3,7 @@ from datetime import datetime
 from loger import log
 from cloud import upload_image
 
-def capture_picture(name):
+def capture_picture(name,pathvid):
     dt_string = x.strftime("%H-%M-%S")
     filename =name+dt_string
     print(filename)
@@ -12,7 +12,7 @@ def capture_picture(name):
     count=0
     x = datetime.now()
     # Open the default camera
-    cam = cv2.VideoCapture('../images/woman.mp4')
+    cam = cv2.VideoCapture(pathvid)
     while(True):
             ret, img = cam.read()
             cv2.imwrite(path +filename +".jpg",img)
