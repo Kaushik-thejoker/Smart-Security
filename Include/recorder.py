@@ -4,13 +4,14 @@ from loger import log
 from cloud import upload_image
 
 def capture_picture(name,pathvid):
+    x = datetime.now()
     dt_string = x.strftime("%H-%M-%S")
     filename =name+dt_string
     print(filename)
     destination_path = f'images/{filename}'
     path=f"../logs/events/"
     count=0
-    x = datetime.now()
+
     # Open the default camera
     cam = cv2.VideoCapture(pathvid)
     while(True):

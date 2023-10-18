@@ -8,7 +8,7 @@ from create_dataset import create_db
 from loger import log
 from recogniser import recognizer
 #define fundamentals
-addusr=['add user','update user','add new11 user']
+addusr=['add user','update user','add new user']
 listusers=["list all users","all users","users"]
 initProcess=["init",'start']
 freqRate=0# rate at which images needs to be clicked
@@ -69,6 +69,7 @@ while(1):
     try:
         with sr.Microphone() as source2:
             r = sr.Recognizer()
+            r.dynamic_energy_threshold= False
             r.adjust_for_ambient_noise(source2, duration=0.2)
             #listens for the user's input
             audio2 = r.listen(source2)
